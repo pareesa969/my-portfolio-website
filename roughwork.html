@@ -14,14 +14,51 @@
       <li><a href="portfolio.html">Portfolio</a></li>
       <li><a href="tictactoe.html">Tic Tac Toe</a></li>
       <li><a href="roughwork.html">Rough Work</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
     </ul>
   </nav>
 
   <div class="container">
-    <h2>Rough Work</h2>
-    <p>Notes, ideas, or doodles.</p>
-  </div>
+    <h2>Rough Work Notepad</h2>
+    <canvas id="notepad" width="500" height="400"></canvas>
+    
+    <div class="toolbar">
+  <button onclick="setColor('black')">Black</button>
+  <button onclick="setColor('red')">Red</button>
+  <button onclick="setColor('blue')">Blue</button>
+  <button onclick="setColor('green')">Green</button>
+  <button onclick="setBrush('normal')">Normal</button>
+  <button onclick="setBrush('neon')">Neon</button>
+  <button onclick="setBrush('highlighter')">Highlighter</button>
 
-  <script src="script.js"></script>
+  
+  <!-- 🟢 Color picker -->
+  <input type="color" onchange="setColor(this.value)" title="Pick any color">
+  
+  <button onclick="setEraser()">Eraser</button>
+  
+  <select onchange="setSize(this.value)">
+    <option value="2">Thin</option>
+    <option value="5">Medium</option>
+    <option value="10">Thick</option>
+  </select>
+  
+  <button onclick="clearCanvas()">Clear</button>
+  <button onclick="downloadCanvas()">Save Drawing</button>
+  <button onclick="undo()">Undo</button>
+  <button onclick="redo()">Redo</button>
+  <div class="shape-buttons">
+  <button onclick="setShape('free')">Free Draw ✏️</button>
+  <button onclick="setShape('rectangle')">Rectangle ⬛</button>
+  <button onclick="setShape('circle')">Circle ⚪</button>
+  <button onclick="setShape('line')">Line ➖</button>
+  <button onclick="toggleNeon()">Neon On/Off</button>
+
+</div>
+</div>
+
+
+
+  <script src="notepad.js"></script>
 </body>
 </html>

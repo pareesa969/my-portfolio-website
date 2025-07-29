@@ -1,69 +1,24 @@
+/* General body & nav styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* don’t center vertically anymore because nav is fixed */;
-    min-height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #1e1e1e, #2c2c2c);
+  color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
 }
 
-.container {
-    padding: 20px;
-    width: 100%;
-    max-width: 800px;
-    box-sizing: border-box;
-    margin-top: 70px;  /* 👈 pushes content below nav bar */
-}
-
-.profile-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    text-align: center;
-}
-
-.profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 3px solid #007bff; /* A nice blue border */
-}
-
-h1 {
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.bio {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.contact-button {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.contact-button:hover {
-    background-color: #0056b3;
-}
-
-/* ✅ NEW nav styles outside media query */
 nav {
-  background-color: #333;
+  background-color: #111;
   padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 nav ul {
@@ -76,7 +31,7 @@ nav ul {
 }
 
 nav a {
-  color: white;
+  color: #eee;
   text-decoration: none;
   font-weight: bold;
   padding: 5px 10px;
@@ -85,82 +40,282 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #555;
+  background-color: #333;
 }
-nav {
-    background-color: #333;
-    padding: 10px 0;
-    position: fixed;   /* 👈 makes it stick */
-    top: 0;
-    left: 0;
-    width: 100%;       /* full width */
-    z-index: 1000;     /* stays on top */
-  }
-/* Tic Tac Toe board styling */
+
+.container {
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+  box-sizing: border-box;
+  margin-top: 80px;
+  text-align: center;
+}
+
+/* Profile card */
+.profile-card {
+  background-color: #222;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  padding: 30px;
+  margin: 20px;
+}
+
+.profile-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #2e7d5a;
+}
+
+h1 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.bio {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.profile-card p {
+  color: #ccc;
+}
+
+.contact-button {
+  display: inline-block;
+  background-color: #2e7d5a;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #256d4e;
+}
+
+/* Tic Tac Toe */
 .board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 5px;
-    margin: 20px auto;
-  }
-  
-  .cell {
-    width: 100px;
-    height: 100px;
-    background-color: white;
-    border: 2px solid #333;
-    font-size: 48px;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .cell:hover {
-    background-color: #f0f0f0;
-  }
-  
-  #status {
-    font-size: 20px;
-    margin-top: 10px;
-  }
-  
-  button {
-    padding: 8px 16px;
-    font-size: 16px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-
-
-  /* Responsive adjustments */
-@media (max-width: 600px) {
-    .profile-card {
-        padding: 20px;
-    }
-    h1 {
-        font-size: 24px;
-    }
-    .bio {
-        font-size: 14px;
-    }
-    .contact-button {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-    
-      
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+  margin: 20px auto;
+  justify-content: center;
 }
 
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border: 2px solid #333;
+  font-size: 48px;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cell:hover {
+  background-color: #f0f0f0;
+}
+
+#status {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #2e7d5a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #256d4e;
+}
+
+/* Portfolio page */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: #333;
+}
+
+th, td {
+  border: 2px solid #2e7d5a;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #2e7d5a;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #444;
+}
+
+.project-buttons {
+  margin-top: 20px;
+}
+
+.project-buttons .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.project-buttons .blue {
+  background-color: #2e7d5a;
+}
+.project-buttons .blue:hover {
+  background-color: #256d4e;
+}
+
+.project-buttons .green {
+  background-color: #388e3c;
+}
+.project-buttons .green:hover {
+  background-color: #2e7030;
+}
+
+.project-buttons .purple {
+  background-color: #6f42c1;
+}
+.project-buttons .purple:hover {
+  background-color: #59339c;
+}
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.gallery-item {
+  background-color: #111;
+  border-radius: 8px;
+  padding: 10px;
+  color: #eee; /* text light on dark */
+  text-align: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Rough Work canvas & toolbar */
+canvas#notepad {
+  background-color: white;
+  border: 2px solid #444;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: crosshair;
+}
+
+.toolbar {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.toolbar button, .toolbar select, .toolbar input[type="color"] {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #444;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.toolbar button:hover {
+  background-color: #666;
+}
+
+.toolbar input[type="color"] {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid #888;
+}
+
+.toolbar button:last-child {
+  background-color: #ff00ff;
+}
+.toolbar button:last-child:hover {
+  background-color: #cc00cc;
+}
+
+/* Responsive adjustments */
+@media (min-width: 1200px) {
+  .profile-card {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 40px;
+  }
+  .profile-image {
+    width: 180px;
+    height: 180px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+  .profile-card {
+    padding: 20px;
+  }
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  .contact-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  .cell {
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+  }
+}

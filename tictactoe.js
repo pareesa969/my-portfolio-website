@@ -1,50 +1,57 @@
-let currentPlayer = "X";
-let board = ["", "", "", "", "", "", "", "", ""];
-let gameActive = true;
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('✅ Tic Tac Toe JS loaded!');  // check if script runs
 
-const cells = document.querySelectorAll(".cell");
-const statusText = document.getElementById("status");
+  let currentPlayer = 'X';
+  let cells = document.querySelectorAll('.cell');
+  let statusText = document.getElementById('status');
 
-function handleClick(e) {
-  const index = e.target.getAttribute("data-index");
-  if (!gameActive || board[index] !== "") return;
+  console.log('Number of cells found:', cells.length); // should print 9
 
-  board[index] = currentPlayer;
-  e.target.textContent = currentPlayer;
+  cells.forEach(cell => {
+    cell.addEventListener('click', handleClick);
+  });
 
-  if (checkWin()) {
-    statusText.textContent = `${currentPlayer} wins! 🎉`;
-    gameActive = false;
-  } else if (board.every(cell => cell !== "")) {
-    statusText.textContent = "It's a draw!";
-    gameActive = false;
-  } else {
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-    statusText.textContent = `It's ${currentPlayer}'s turn`;
+  function handleClick(e) {
+    const cell = e.target;
+    if (cell.textContent === '') {
+      cell.textContent = currentPlayer;
+      if (checkWinner()) {
+        statusText.textContent = `Player ${currentPlayer} wins!`;
+        endGame();
+      } else if (isDraw()) {
+        statusText.textContent = "It's a draw!";
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        statusText.textContent = `Player ${currentPlayer}'s turn`;
+      }
+    }
   }
-}
 
-function checkWin() {
-  const winPatterns = [
-    [0,1,2], [3,4,5], [6,7,8], // rows
-    [0,3,6], [1,4,7], [2,5,8], // columns
-    [0,4,8], [2,4,6]           // diagonals
-  ];
-  return winPatterns.some(pattern =>
-    pattern.every(i => board[i] === currentPlayer)
-  );
-}
+  function checkWinner() {
+    const winPatterns = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+    return winPatterns.some(pattern =>
+      pattern.every(i => cells[i].textContent === currentPlayer)
+    );
+  }
 
-function resetGame() {
-  board = ["", "", "", "", "", "", "", "", ""];
-  gameActive = true;
-  currentPlayer = "X";
-  statusText.textContent = `It's ${currentPlayer}'s turn`;
-  cells.forEach(cell => cell.textContent = "");
-}
+  function isDraw() {
+    return [...cells].every(cell => cell.textContent !== '');
+  }
 
-// Add event listeners to each cell
-cells.forEach(cell => cell.addEventListener("click", handleClick));
+  function endGame() {
+    cells.forEach(cell => cell.removeEventListener('click', handleClick));
+  }
 
-// Start the game
-resetGame();
+  function resetGame() {
+    currentPlayer = 'X';
+    cells.forEach(cell => cell.textContent = '');
+    statusText.textContent = `Player ${currentPlayer}'s turn`;
+    cells.forEach(cell => cell.addEventListener('click', handleClick));
+  }
+
+  document.querySelector('button').addEventListener('click', resetGame);
+});
